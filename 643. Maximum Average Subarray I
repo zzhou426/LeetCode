@@ -1,0 +1,11 @@
+# 872 ms (95.18%) & 17.1 MB (76.71%)
+# Using cumsum of changes from the first subarray
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        n = len(nums)
+        change = []
+        for i in range(n-k):
+            change.append(nums[i+k]-nums[i])
+        for i in range(1, n-k):
+            change[i] = change[i] + change[i-1]
+        return (sum(nums[0:k]) + max(change))/k if change and max(change) >= 0 else sum(nums[0:k])/k
