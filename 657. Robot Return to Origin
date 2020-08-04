@@ -1,0 +1,18 @@
+# Runtime: 104 ms, faster than 14.77% of Python3 online submissions for Robot Return to Origin.
+# Memory Usage: 13.8 MB, less than 63.41% of Python3 online submissions for Robot Return to Origin.
+
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        count = {'R':0, 'L':0, 'U':0, 'D':0}
+        for move in moves:
+            if move == 'R':
+                count['R'] += 1
+            if move == 'L':
+                count['L'] += 1
+            if move == 'U':
+                count['U'] += 1
+            if move == 'D':
+                count['D'] += 1
+        return count['R'] == count['L'] and count['U'] == count['D']
+        
+        
