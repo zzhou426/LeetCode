@@ -1,0 +1,26 @@
+# Runtime: 160 ms, faster than 8.26% of Python3 online submissions for Two Sum IV - Input is a BST.
+# Memory Usage: 16 MB, less than 55.91% of Python3 online submissions for Two Sum IV - Input is a BST.
+
+# DFS Method
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTarget(self, root: TreeNode, k: int) -> bool:
+        treenode = []
+        self.getnode(root, treenode)
+        for i in range(len(treenode)):
+            if (k-treenode[i]) in treenode[i+1:]:
+                return True
+        return False
+        
+    def getnode(self, root, treenode):
+        if not root:
+            return 
+        treenode.append(root.val)
+        self.getnode(root.right, treenode)
+        self.getnode(root.left, treenode)
+        
