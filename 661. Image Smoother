@@ -1,0 +1,18 @@
+# Runtime: 1112 ms, faster than 17.00% of Python3 online submissions for Image Smoother.
+# Memory Usage: 14.7 MB, less than 16.67% of Python3 online submissions for Image Smoother.
+
+from copy import deepcopy
+class Solution:
+    def imageSmoother(self, M: List[List[int]]) -> List[List[int]]:
+        # deepcopy之后不管怎么修改ans都不会改变M的值
+        ans = deepcopy(M)
+        
+        for i in range(len(M)):
+            for j in range(len(M[0])):
+                L = [M[a][b]
+                    for a in (i-1, i, i+1) if a in range(len(M))
+                    for b in (j-1, j, j+1) if b in range(len(M[0]))]
+                ans[i][j] = floor(sum(L)/len(L))
+        return ans
+        
+# 要学会 for a in (i-1, i, i+1) if a in range(len(M)) 的用法
