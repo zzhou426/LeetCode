@@ -1,0 +1,30 @@
+# Runtime: 52 ms, faster than 77.73% of Python3 online submissions for Trim a Binary Search Tree.
+# Memory Usage: 17.7 MB, less than 63.09% of Python3 online submissions for Trim a Binary Search Tree.
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def trimBST(self, root: TreeNode, L: int, R: int) -> TreeNode:
+        def trim(node):
+            if not node:
+                # return None is return nothing or null if necessary
+                return None
+            elif node.val > R:
+                # since node.right > node, there is no use to trim node.right
+                # while node.left < node, we can probably use trim(node.left) to replace node
+                return trim(node.left)
+            elif node.val < L:
+                # same as node.val < R
+                return trim(node.right)
+            else:
+                # if node satisfies the condition, we need to continue (DFS Method)
+                node.left = trim(node.left)
+                node.right = trim(node.right)
+                # if node satisfies the condition, return that node (in trim(node.left) or trim(node.right), it is returning that node.left or node.right satisfies the condition)
+                return node
+            
+        return trim(root)
