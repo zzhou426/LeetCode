@@ -1,0 +1,29 @@
+# Runtime: 48 ms, faster than 15.99% of Python3 online submissions for Second Minimum Node In a Binary Tree.
+# Memory Usage: 13.8 MB, less than 37.18% of Python3 online submissions for Second Minimum Node In a Binary Tree.
+
+# DFS Method
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findSecondMinimumValue(self, root: TreeNode) -> int:
+        treenode = []
+        self.getnode(root, treenode)
+        if not treenode:
+            return -1
+        temp = sorted(set(treenode))
+        if len(temp) == 1:
+            return -1
+        ans = list(temp)[1]
+        return ans
+        
+    def getnode(self, root, treenode):
+        if not root:
+            return
+        treenode.append(root.val)
+        self.getnode(root.left, treenode)
+        self.getnode(root.right, treenode)
+        
