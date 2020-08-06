@@ -1,0 +1,34 @@
+# Runtime: 428 ms, faster than 8.59% of Python3 online submissions for Valid Palindrome II.
+# Memory Usage: 14.4 MB, less than 13.86% of Python3 online submissions for Valid Palindrome II.
+
+# Use Valid Palindrome I: s[i] != s[len(s-i-1)]
+# Use two conditions: safter1 and safter2
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        num = len(s) // 2
+        for i in range(num):
+            if s[i] != s[len(s)-i-1]:
+                safter1 = s[0:i] + s[i+1:len(s)]
+                safter2 = s[0:len(s)-i-1] + s[len(s)-i:len(s)]
+                new_num = len(safter1) // 2
+                for i in range(new_num):
+                    if safter1[i] != safter1[len(safter1)-i-1] and safter2[i] != safter2[len(safter2)-i-1]:
+                        return False
+                return True
+        return True
+        
+# Better solution
+# Use two pointer
+class Solution(object):
+    def validPalindrome(self, s):
+        # Time: O(n)
+        # Space: O(n)
+        left, right = 0, len(s) - 1
+        while left < right:
+            if s[left] != s[right]:
+                # leave left out or leave right out
+                one, two = s[left:right], s[left + 1:right + 1]
+                return one == one[::-1] or two == two[::-1]
+            # if s[left] == s[right], continue
+            left, right = left + 1, right - 1
+        return True
