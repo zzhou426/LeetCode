@@ -1,0 +1,19 @@
+# Runtime: 80 ms, faster than 76.71% of Python3 online submissions for Longest Continuous Increasing Subsequence.
+# Memory Usage: 15 MB, less than 71.88% of Python3 online submissions for Longest Continuous Increasing Subsequence.
+
+# Using max(res, temp)
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        
+        res = 0
+        temp = 1
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                temp += 1
+            else:
+                res = max(temp, res)
+                temp = 1
+        res = max(temp, res)
+        return res
