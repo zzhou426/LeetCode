@@ -1,0 +1,19 @@
+# Runtime: 108 ms, faster than 61.27% of Python3 online submissions for Repeated String Match.
+# Memory Usage: 14.1 MB, less than 21.57% of Python3 online submissions for Repeated String Match.
+
+class Solution:
+    def repeatedStringMatch(self, A: str, B: str) -> int:
+        # num is min: A = "a" B = "aa"
+        m = int(len(B) / len(A))
+        n = m + 1
+        # num is max: A = "abcd" B = "dabcdabcdabcda"
+        # if A*n can cover B, A*n can cover "cdabcdabcda" ... before next A appear
+        j = m + 2
+        if B in A*m:
+            return m
+        elif B in A*n:
+            return n
+        elif B in A*j:
+            return j
+        else:
+            return -1
