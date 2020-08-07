@@ -1,3 +1,4 @@
+# Method 1
 # Runtime: 108 ms, faster than 61.27% of Python3 online submissions for Repeated String Match.
 # Memory Usage: 14.1 MB, less than 21.57% of Python3 online submissions for Repeated String Match.
 
@@ -7,7 +8,7 @@ class Solution:
         m = int(len(B) / len(A))
         n = m + 1
         # num is max: A = "abcd" B = "dabcdabcdabcda"
-        # if A*n can cover B, A*n can cover "cdabcdabcda" ... before next A appear
+        # if A*n can cover B, A*n can cover "cdabcdabcda" or "bcdabcdabcda" ...
         j = m + 2
         if B in A*m:
             return m
@@ -17,3 +18,19 @@ class Solution:
             return j
         else:
             return -1
+            
+# Method 2
+# Runtime: 96 ms, faster than 81.17% of Python3 online submissions for Repeated String Match.
+# Memory Usage: 14 MB, less than 25.49% of Python3 online submissions for Repeated String Match.
+
+class Solution:
+    def repeatedStringMatch(self, A: str, B: str) -> int:
+        x, y = len(A), len(B)
+        # How to define the possiblr boundries for times repeated?
+        # The minimum boundry: nx >= y
+        # The maximum boundry: nx <= y+(x-1)+(x-1)
+        # (int(*/*)+1 means to round the num up
+        for i in range(int(y/x), int((y+(x-1)+(x-1))/x) + 1):
+            if B in A*i:
+                return i
+        return -1
