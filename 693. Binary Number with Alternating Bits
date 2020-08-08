@@ -1,0 +1,11 @@
+# Runtime: 36 ms, faster than 42.67% of Python3 online submissions for Binary Number with Alternating Bits.
+# Memory Usage: 13.9 MB, less than 27.67% of Python3 online submissions for Binary Number with Alternating Bits.
+
+# Only "1010"or"101"
+class Solution:
+    def hasAlternatingBits(self, n: int) -> bool:
+        bi = str(bin(n)[2:])
+        for i in range(len(bi)):
+            if (i % 2 == 0 and bi[i] != "1") or (i % 2 == 1 and bi[i] != "0"):
+                return False
+        return True
