@@ -1,0 +1,16 @@
+# My Method
+# Runtime: 3036 ms, faster than 7.44% of Python3 online submissions for Degree of an Array.
+# Memory Usage: 15 MB, less than 69.55% of Python3 online submissions for Degree of an Array.
+
+class Solution:
+    def findShortestSubArray(self, nums: List[int]) -> int:
+        import collections
+        count = collections.Counter(nums)
+        
+        length = []
+        for num in count:
+            if count[num] == max(count.values()):
+                a = nums.index(num)
+                b = nums[::-1].index(num)
+                length.append(len(nums)-b-a)
+        return min(length)
