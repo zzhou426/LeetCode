@@ -1,0 +1,39 @@
+# Method 1
+# Runtime: 320 ms, faster than 16.86% of Python3 online submissions for Count Binary Substrings.
+# Memory Usage: 14.3 MB, less than 57.67% of Python3 online submissions for Count Binary Substrings.
+
+# count "1001110" as [1,2,3,1]
+# take min(group[i-1], group[i]) as the total number of binary substrings of group[i-1] and group[i]
+# such as min(2,3) = 2: "00111" have 2 binary substring: "01" and "0011"
+class Solution:
+    def countBinarySubstrings(self, s: str) -> int:
+        group = [1]
+        for i in range(1, len(s)):
+            if s[i] != s[i-1]:
+                group.append(1)
+            else:
+                group[-1] += 1
+              
+        res = 0
+        for i in range(1, len(group)):
+            res += min(group[i-1], group[i])
+        return res
+
+# Method 2
+# Runtime: 148 ms, faster than 91.23% of Python3 online submissions for Count Binary Substrings.
+# Memory Usage: 15.3 MB, less than 7.76% of Python3 online submissions for Count Binary Substrings.
+
+# much quicker way to get group
+# split "0...0" and "1...1" up
+class Solution:
+    def countBinarySubstrings(self, s: str) -> int:
+        group = []
+        group_s = s.replace("01", "0 1").replace("10", "1 0").split()
+        for s in group_s:
+            group.append(len(s))
+        
+        res = 0
+        for i in range(1, len(group)):
+            res += min(group[i-1], group[i])
+        return res
+            
