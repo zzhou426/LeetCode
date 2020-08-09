@@ -1,0 +1,41 @@
+# DFS Method
+# Runtime: 88 ms, faster than 40.40% of Python3 online submissions for Search in a Binary Search Tree.
+# Memory Usage: 15.7 MB, less than 52.33% of Python3 online submissions for Search in a Binary Search Tree.
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root:
+            return 
+        if root.val == val:
+            return root
+        return self.searchBST(root.left, val) or self.searchBST(root.right, val)
+        
+# Better DFS Method
+# Runtime: 76 ms, faster than 85.68% of Python3 online submissions for Search in a Binary Search Tree.
+# Memory Usage: 15.8 MB, less than 32.88% of Python3 online submissions for Search in a Binary Search Tree.
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root:
+            return 
+        if root.val == val:
+            return root
+        # if root.val < val, then we need to search the left subtree, since right subree is less than root
+        elif root.val < val:
+            return self.searchBST(root.right, val)
+        # if root.val > val, then we need to search the right subtree, since left subree is bigger than root
+        elif root.val > val:
+            return self.searchBST(root.left, val)
+   
