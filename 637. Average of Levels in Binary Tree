@@ -58,4 +58,4 @@ class Solution(object):
                     queue.append(cur_node.right)
                 queue.pop(0)
             result.append(sum(temp)/layer_len)
-        return resul
+        return result
