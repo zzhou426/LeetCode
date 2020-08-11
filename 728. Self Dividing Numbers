@@ -1,0 +1,30 @@
+# Brute Force Method
+# Runtime: 52 ms, faster than 76.13% of Python3 online submissions for Self Dividing Numbers.
+# Memory Usage: 13.7 MB, less than 87.17% of Python3 online submissions for Self Dividing Numbers.
+
+# Use def True or False to solve the problem: for every iterable, it is true
+class Solution:
+    def selfDividingNumbers(self, left: int, right: int) -> List[int]:
+        ans = []
+        for num in range(left, right+1):
+            if self.isselfdividing(num):
+                ans.append(num)
+        return ans
+            
+    def isselfdividing(self, num):
+        s = str(num)
+        for i in s:
+            if int(i) == 0 or num % int(i) != 0:
+                return False
+        return True
+        
+# One-liner
+# Runtime: 88 ms, faster than 22.03% of Python3 online submissions for Self Dividing Numbers.
+# Memory Usage: 13.8 MB, less than 57.04% of Python3 online submissions for Self Dividing Numbers.
+
+# Use all() to solve the problem
+class Solution:
+    def selfDividingNumbers(self, left: int, right: int) -> List[int]:
+        return [x for x in range(left, right+1) if all([int(i) != 0 and x % int(i)==0 for i in str(x)])]
+        
+ 
