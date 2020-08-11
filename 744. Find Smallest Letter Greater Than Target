@@ -1,0 +1,13 @@
+# Runtime: 116 ms, faster than 73.46% of Python3 online submissions for Find Smallest Letter Greater Than Target.
+# Memory Usage: 14 MB, less than 50.00% of Python3 online submissions for Find Smallest Letter Greater Than Target.
+
+# How to deal with the situation when target in not within letters
+# if target is smaller than letters[0], return letters[0]
+# if target is larger than letters[-1], return letters[0]
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        letters.sort()
+        for i in range(len(letters)-1):
+            if letters[i] <= target and letters[i+1] > target:
+                return letters[i+1]
+        return letters[0]
