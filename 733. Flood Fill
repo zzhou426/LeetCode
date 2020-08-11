@@ -1,0 +1,18 @@
+# Runtime: 72 ms, faster than 97.07% of Python3 online submissions for Flood Fill.
+# Memory Usage: 14.3 MB, less than 5.12% of Python3 online submissions for Flood Fill.
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        rows, cols, orig_color = len(image), len(image[0]), image[sr][sc]
+        
+        def search(row, col):
+            if not (0<=row<rows and 0<=col<cols) or image[row][col] != orig_color:
+                return 
+            image[row][col] = newColor
+            # for ... in ...: This is used to search position
+            for (dx,dy) in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                search(row+dx, col+dy)
+        
+        if orig_color != newColor:
+            search(sr, sc)
+        return image
