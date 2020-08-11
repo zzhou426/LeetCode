@@ -1,0 +1,24 @@
+# My Method
+# Runtime: 3736 ms, faster than 11.23% of Python3 online submissions for Find Pivot Index.
+# Memory Usage: 14.9 MB, less than 75.48% of Python3 online submissions for Find Pivot Index.
+
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        s = sum(nums)
+        for i in range(len(nums)):
+            if sum(nums[0:i]) == (s-nums[i])/2:
+                return i
+        return -1
+        
+# Better Method O(n) time O(1) space
+class Solution(object):
+    def pivotIndex(self, nums):
+        # Time: O(n)
+        # Space: O(1)
+        left, right = 0, sum(nums)
+        for index, num in enumerate(nums):
+            right -= num
+            if left == right:
+                return index
+            left += num
+        return -1
