@@ -1,0 +1,14 @@
+# Runtime: 32 ms, faster than 88.91% of Python3 online submissions for Unique Morse Code Words.
+# Memory Usage: 13.9 MB, less than 49.86% of Python3 online submissions for Unique Morse Code Words.
+
+class Solution:
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        lookup = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        mos = []
+        for word in words:
+            word_s = ""
+            for a in word:
+                word_s += lookup[ord(a)-97]
+            mos.append(word_s)
+        return len(set(mos))
+        
