@@ -1,0 +1,30 @@
+# Runtime: 252 ms, faster than 77.01% of Python3 online submissions for Prime Number of Set Bits in Binary Representation.
+# Memory Usage: 13.8 MB, less than 68.21% of Python3 online submissions for Prime Number of Set Bits in Binary Representation.
+
+# My Method: Modified from Count Primes
+class Solution:
+    def countPrimeSetBits(self, L: int, R: int) -> int:
+        # first we find every num's set bits: ns
+        ns = []
+        for num in range(L, R+1):
+            num = bin(num)[2:].count('1')
+            ns.append(num)
+        n = max(ns)
+        
+        # Build a prime number list to distinguish primes which are less than n
+        # [0,1,...,n] n+1
+        nums = [None]*(n+1)
+        nums[0] = False
+        nums[1] = False
+        for i in range(n+1):
+            if nums[i] == None:
+                nums[i] = True              
+                for j in range(i+i, n+1, i):
+                    nums[j] = False
+        # count them
+        count = 0
+        for i in ns:
+            if nums[i] == True:
+                count += 1
+        return count
+            
