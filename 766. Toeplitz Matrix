@@ -1,0 +1,11 @@
+# Runtime: 88 ms, faster than 86.09% of Python3 online submissions for Toeplitz Matrix.
+# Memory Usage: 13.7 MB, less than 86.19% of Python3 online submissions for Toeplitz Matrix.
+
+# From top to bottom
+class Solution:
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        for x in range(len(matrix[0])-1):
+            for y in range(len(matrix)-1):
+                if matrix[y+1][x+1] != matrix[y][x]:
+                    return False
+        return True
