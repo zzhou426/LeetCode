@@ -1,0 +1,18 @@
+# Runtime: 28 ms, faster than 90.64% of Python3 online submissions for Number of Lines To Write String.
+# Memory Usage: 13.8 MB, less than 62.83% of Python3 online submissions for Number of Lines To Write String.
+
+class Solution:
+    def numberOfLines(self, widths: List[int], S: str) -> List[int]:
+        widths_s = []
+        for s in S:
+            widths_s.append(widths[ord(s)-97])
+        count = 1
+        sum_s = 0
+        for width in widths_s:
+            # use sum_after to compare
+            if sum_s + width <= 100:
+                sum_s += width
+            else:
+                count += 1
+                sum_s = width
+        return [count, sum_s]
