@@ -1,0 +1,13 @@
+# Runtime: 136 ms, faster than 38.04% of Python3 online submissions for Rotated Digits.
+# Memory Usage: 14 MB, less than 21.34% of Python3 online submissions for Rotated Digits.
+
+class Solution:
+    def rotatedDigits(self, N: int) -> int:
+        res = 0
+        for num in range(1, N + 1):
+            # Use any
+            if any(x in str(num) for x in ["3", "4", "7"]):
+                continue
+            if any(x in str(num) for x in ["2", "5", "6", "9"]):
+                res += 1
+        return res
