@@ -1,0 +1,23 @@
+# Runtime: 104 ms, faster than 42.28% of Python3 online submissions for Shortest Completing Word.
+# Memory Usage: 13.9 MB, less than 94.59% of Python3 online submissions for Shortest Completing Word.
+
+class Solution:
+    def shortestCompletingWord(self, licensePlate: str, words: List[str]) -> str:
+        import collections
+        res = ""
+        find = []
+        for s in licensePlate:
+            if s.isalpha():
+                find.append(s.lower())
+        plateCount = collections.Counter(find)
+        for word in words:
+            # use match = Ture to solve the problem of for every iterable, it is true!!
+            match = True
+            # use Counter twice to compair
+            wordCount = collections.Counter(word)
+            for w, c in plateCount.items():
+                if c > wordCount[w]:
+                    match = False
+            if (not res or len(res)>len(word)) and match:
+                res = word
+        return res
