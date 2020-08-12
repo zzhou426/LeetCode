@@ -1,0 +1,29 @@
+# Runtime: 24 ms, faster than 98.27% of Python3 online submissions for Minimum Distance Between BST Nodes.
+# Memory Usage: 13.9 MB, less than 50.78% of Python3 online submissions for Minimum Distance Between BST Nodes.
+
+# BST Method
+# Fisrt, we do a in-order traversal (must be in order, otherwise we can't use output[i]-output[i-1])
+# Then we compare every output[i]-output[i-1]
+# Because of BST's structure, we will find every difference (who has the possibility to be minimum)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def minDiffInBST(self, root: TreeNode) -> int:
+        output = []
+        self.inOrderTraversal(root, output)
+        min_abs = float('inf')
+        for i in range(1, len(output)):
+            min_abs = min(min_abs, output[i]-output[i-1])
+        return min_abs
+        
+    def inOrderTraversal(self, root, output):
+        if root == None:
+            return
+        else:
+            self.inOrderTraversal(root.left, output)
+            output.append(root.val)
+            self.inOrderTraversal(root.right, output)
