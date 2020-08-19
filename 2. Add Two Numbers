@@ -1,0 +1,25 @@
+# Runtime: 76 ms, faster than 67.34% of Python3 online submissions for Add Two Numbers.
+# Memory Usage: 14 MB, less than 12.54% of Python3 online submissions for Add Two Numbers.
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        add = 0
+        # ans is the answer, and n is the pointer
+        ans = n = ListNode(0)
+        while l1 or l2 or add:
+            if l1:
+                add += l1.val
+                l1 = l1.next
+            if l2:
+                add += l2.val
+                l2 = l2.next
+            # add = add//10, val = add%10
+            add, val = divmod(add, 10)
+            # n.next = ListNode(val), n = n.next
+            n.next = n = ListNode(val)
+        return ans.next
