@@ -1,0 +1,9 @@
+# Runtime: 152 ms, faster than 11.63% of Python3 online submissions for Find First and Last Position of Element in Sorted Array.
+# Memory Usage: 15.2 MB, less than 44.79% of Python3 online submissions for Find First and Last Position of Element in Sorted Array.
+
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if target in nums:
+            return [nums.index(target), len(nums)-nums[::-1].index(target)-1]
+        else:
+            return [-1, -1]
