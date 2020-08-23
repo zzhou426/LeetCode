@@ -1,0 +1,36 @@
+# Runtime: 72 ms, faster than 9.09% of Python3 online submissions for Positions of Large Groups.
+# Memory Usage: 13.9 MB, less than 50.05% of Python3 online submissions for Positions of Large Groups
+
+# My Method
+class Solution:
+    def largeGroupPositions(self, S: str) -> List[List[int]]:
+        ans = []
+        ends = []
+        for i in range(len(S)-1):
+            if S[i] != S[i+1]:
+                ends.append(i)
+        ends.append(len(S)-1)
+        if ends[0] >= 2:
+            ans.append([0, ends[0]])
+        for i in range(len(ends)-1):
+            if ends[i+1] - ends[i] >= 3:
+                ans.append([ends[i]+1, ends[i+1]])
+        return ans
+        
+# Better Method
+# Runtime: 44 ms, faster than 47.96% of Python3 online submissions for Positions of Large Groups.
+# Memory Usage: 14.1 MB, less than 5.12% of Python3 online submissions for Positions of Large Groups.
+
+class Solution:
+    def largeGroupPositions(self, S: str) -> List[List[int]]:
+        i = 0
+        ans = []
+        
+        while i < len(S):
+            j = i+1
+            while j < len(S) and S[j] == S[i]:
+                j += 1
+            if (j-i) >= 3:
+                ans.append([i, j-1])
+            i = j
+        return ans
