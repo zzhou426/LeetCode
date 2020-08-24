@@ -1,0 +1,23 @@
+# Runtime: 156 ms, faster than 57.37% of Python3 online submissions for Maximize Distance to Closest Person.
+# Memory Usage: 15.7 MB, less than 5.06% of Python3 online submissions for Maximize Distance to Closest Person.
+
+class Solution:
+    def maxDistToClosest(self, seats: List[int]) -> int:
+        temps = []
+        temp = []
+        for i in range(len(seats)):
+            if seats[i] == 0:
+                temp.append(seats[i])
+            else:
+                temp.append(seats[i])
+                temps.append(temp)
+                temp = []
+        temps.append(temp)
+        for i in range(len(temps)):
+            temps[i] = temps[i].count(0)
+        if len(temps) > 2:
+            max_temp = (max(temps[i] for i in range(1, len(temps)-1))+1)//2
+        else:
+            max_temp = 0
+        return max(temps[0], max_temp, temps[-1])
+      
